@@ -1,0 +1,27 @@
+body{
+    margin-right: 5%; 
+    margin-left: 5%;
+    text-align: center;
+
+}
+
+#map, #loginArea, #AddressContainer{
+    position:absolute;
+}
+#map, #mapImage{
+    width:500px;
+    height:400px;
+}
+
+#loginArea{
+    right: 22%; 
+}
+
+#loginButton{
+    font-size: 1.7rem;
+}
+
+#AddressContainer{
+    bottom: 22%;
+    width: 80%;
+}

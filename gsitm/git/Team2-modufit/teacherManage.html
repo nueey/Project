@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modu Fit</title>
+    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/teacherManage.css">
+</head>
+<body>
+ <img src="images/headerImg.jpg" width="100%">
+
+<nav>
+ <div id="static1"> -<a id="ahref1" href="#" onclick="javascript:hrefClick(this.id);" > 신청관리 </a></div>
+ <br/>
+ <div id="static2"> -<a id="ahref2" href="#" onclick="javascript:hrefClick(this.id);" > 강사관리 </a></div>
+ <br/>
+ <div id="static3"> -<a id="ahref3" href="#" onclick="javascript:hrefClick(this.id);" > 스케줄관리 </a></div>
+ </nav>
+
+<h1>강사관리</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>성별</th>
+        <th>나이</th>
+        <th>연락처</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><input type="text" maxlength="10" id="name" /></td>
+        <td><select id="gender" name="gender">
+          <option value="">성별</option>
+          <option value="남자">남자</option>
+          <option value="여자">여자</option>
+        </select></td>
+        <td><input type="text" id="age" maxlength="3"/></td>
+        <td><input type="tel" id="phone" /></td>
+        <td><button onclick="button02_click()">저장</button></td>
+      </tr>
+    </thead>
+    
+    <tbody id="tbody">
+    </tbody>
+  </table>
+  </body>
+<table>
+  </head>
+  <body>
+    </table>
+</form> 
+</body>
+<script type="text/javascript" src="js/manageApply.js"></script>
+<script type="text/javascript" src="js/teacherManage.js"></script>
+</html>

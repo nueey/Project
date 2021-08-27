@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>자유게시판</title>
+<style>
+    td, th{border:solid 1px;}
+    table {border-collapse:collapse};
+</style>
+</head>
+<body>
+
+<h4 style="color:red">This is a Heading</h4>
+<p style="color:blue">This is a paragraph.</p>
+<p>
+    This paragraph <br/>
+    contains a lot of lines <br/>
+    in the source code, <br/>
+    but the browser <br/>
+    ignores it.
+    </p>
+    
+    <p>
+    This paragraph <br/>
+    contains         a lot of spaces <br/>
+    in the source         code, <br/>
+    but the        browser <br/>
+    ignores it.
+    </p>
+<a href="https://www.w3schools.com">Visit W3Schools</a>
+<a href="javascript:movew3Scool()">This is a link</a>
+<img src="https://cdn.pixabay.com/photo/2021/08/06/18/46/dog-6526980_960_720.jpg" alt="w3school.com" width="128" height="">
+<table style="width:100%; border:solid 1px;">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>
+
+  <form action="/action_page.php">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+    <input type="submit" value="전송">
+  </form>
+</body>
+<script>
+function movew3Scool() {
+    window.location.href = "https://www.w3Scools.com/";
+}
+
+</script>
+
+</html>

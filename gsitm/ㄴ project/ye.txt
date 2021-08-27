@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<title>중고나라에 오신것을 환영합니다.</title>
+<style>
+  td, th {border:solid 1px}
+  table {border-collapse: collapse;}
+</style>
+<body>
+
+<h1>중고나라</h1>
+<table style="width:100%">
+  <tr>
+    <th>말머리</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>작성일</th>
+  </tr>
+  <tbody id="rows">
+      <tr>
+          <th>말머리</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+        </tr>
+        <tr>
+            <th>말머리</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+          </tr>
+  </tbody>
+</table>
+<div style="width:100%; text-align: right;">
+  <button onclick="moveForm()">글작성</button>
+</div>
+
+</body>
+<script>
+  
+  var contentList = JSON.parse(localStorage.getItem("contents"));
+  // contentList.push({no:1
+  //    , title:'테스트'
+  //    , writer:'홍길동'
+  //    , write_date:new Date()});
+  //   contentList.push({no:2
+  //   , title:'테스트'
+  //   , writer:'홍길동'
+  //   , write_date:new Date()});
+  //   contentList.push({no:3
+  //   , title:'테스트'
+  //   , writer:'홍길동'
+  //   , write_date:new Date()});
+
+  
+// 글 작성 폼 이동
+  write();
+  function moveForm() {
+    location.href = 'yeform.html'
+  }
+
+  function write() {
+    var temp = '';
+    var body = document.getElementById('rows');
+
+    for (var i=contentList.length-1; 0<=i; i--) {
+      var content  = contentList[i];
+      console.log(content);
+      temp += '<tr onclick="moveView('+i+')">';
+      temp += '<td style="text-align:center">'+content.no+'</td>';
+      temp += '<td>'+content.title+'</td>';
+      temp += '<td style="text-align:center">'+content.writer+'</td>';
+      temp += '<td style="text-align:center">'+toStringByFormatting(new Date(content.write_date))+'</td>';
+      temp += '</tr>';
+    }
+
+    body.innerHTML = temp;
+  }
+
+  function moveView(contentNo) {
+    location.href = 'view.html?no='+(contentNo+1);
+  }
+
+  function leftPad(value) { if (value >= 10) { return value; } return `0${value}`; } function toStringByFormatting(source, delimiter = '-') { const year = source.getFullYear(); const month = leftPad(source.getMonth() + 1); const day = leftPad(source.getDate()); return [year, month, day].join(delimiter); }
+</script>
+</html>
