@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<title>자유게시판 글작성</title>
+<body>
+
+<h1>게시글내용</h1>
+<table>
+  <tr>
+    <th>제목</th>
+    <td><p id="title"></p></td>
+  </tr>
+  <tr>
+    <th>작성자</th>
+    <td><p id="writer"></p></td>
+  </tr>
+  <tr>
+    <th>작성일</th>
+    <td><p id="write_date"></p></td>
+  </tr>
+  <tr>
+    <th>내용</th>
+    <td>
+      <pre id=contents></pre>
+    </td>
+  </tr>
+</table>
+<div style="width:100%; text-align: right;">
+  <button onclick="window.history.back()">목록</button>
+  <button onclick="modify()" id="modi">수정</button>
+  <button onclick="removeContent()" id="del">삭제</button>
+</div>
+</body>
+<script>
+
+// 아이디 일치할 경우 수정과 삭제 버튼 보이기
+document.addEventListener("DOMContentLoaded", function(){
+  var user = JSON.parse(sessionStorage.getItem("__user__"));
+  var writer = document.getElementById("writer").innerText;
+  if(writer === user["id"]){
+    return;
+  }
+// 아이디 불일치할경우 수정과 삭제버튼 숨기기
+  document.getElementById("modi").hidden=true;
+  document.getElementById("del").hidden=true;
+});
+
+  var contents = JSON.parse(localStorage.getItem("contents"));
+    
+  getContents();
+    
+  function getContents() {
+
+    if (!contents) {
+      contents = [];
+    }
+    
+    var content = contents[getParameterByName('no')-1];
+    document.getElementById('title').innerText = content.title;
+    document.getElementById('writer').innerText = content.writer;
+    document.getElementById('contents').innerText = content.contents;
+    document.getElementById('write_date').innerText = content.write_date;
+      
+  }
+
+  function removeContent() {
+      
+     if (!confirm('삭제하시겠습니까? 다시는 복구 할수없습니다.')) {
+      return;
+    }; 
+      
+    contents.splice(getParameterByName('no')-1,1);
+    localStorage.setItem("contents", JSON.stringify(contents));
+    window.history.back(); 
+    
+  }
+    
+    
+ function modify(){
+    var num_get_list = getParameterByName('no') -1;
+    localStorage.setItem('modify-num',num_get_list);
+    location.href="modify-form.html"
+ };
+
+
+  function getParameterByName(name) { name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search); return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " ")); }
+</script>
+</html>

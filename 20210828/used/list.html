@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<title>중고나라 게시판에 오신것을 환영합니다.</title>
+<style>
+  td, th {border:solid 1px}
+  table {border-collapse: collapse;}
+</style>
+<body>
+
+<h1>중고게시판</h1>
+<span id = "loginName"></span><span>님이 로그인중입니다.</span>
+<table style="width:100%">
+  <tr>
+    <th>번호</th>
+    <th>말머리</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>작성일</th>
+  </tr>
+  <tbody id="rows">
+  </tbody>
+</table>
+<div style="width:100%; text-align: right;">
+  <button onclick="moveForm()">글작성</button>
+</div>
+
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var user = JSON.parse(sessionStorage.getItem("__user__"));
+  var name = user["id"];
+  document.getElementById("loginName").innerText = name; 
+
+});
+
+
+
+var contentList = JSON.parse(localStorage.getItem("contents"));    
+  
+ for (var i = 1; i < contentList.length+1; i++){
+     
+  var label = contentList[i-1];
+  label.no = i;
+} 
+
+  drawRows();
+  function moveForm() {
+    location.href = 'form.html'
+  }
+
+  function drawRows() {
+    var templates = '';
+    var body = document.getElementById('rows');
+
+    for (var i=contentList.length-1; 0<=i; i--) {
+      var content  = contentList[i];
+      console.log(content);
+      templates += '<tr onclick="moveView('+i+')">';
+      templates += '<td style="text-align:center">'+content.no+'</td>';
+      templates += '<td style="text-align:center">'+content.no+'</td>';
+      templates += '<td>'+content.title+'</td>';
+      templates += '<td style="text-align:center">'+content.writer+'</td>';
+      templates += '<td style="text-align:center">'+toStringByFormatting(new Date(content.write_date))+'</td>';
+      templates += '</tr>';
+    }
+
+    body.innerHTML = templates;
+  }
+
+  function moveView(contentNo) {
+    location.href = 'view.html?no='+(contentNo+1);
+  }
+
+  function leftPad(value) { if (value >= 10) { return value; } return `0${value}`; } function toStringByFormatting(source, delimiter = '-') { const year = source.getFullYear(); const month = leftPad(source.getMonth() + 1); const day = leftPad(source.getDate()); return [year, month, day].join(delimiter); }
+</script>
+</html>
